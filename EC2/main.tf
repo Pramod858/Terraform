@@ -34,7 +34,7 @@ resource "aws_instance" "web" {
 resource "aws_security_group" "TF_SG" {
     name        = "security_group_using_terraform"
     description = "security group using terraform"
-    vpc_id      = "vpc-0d302a54a6ebd6d97"
+    vpc_id      = var.vpc_id
 
     ingress {
         from_port   = 22
