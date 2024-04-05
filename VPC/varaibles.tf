@@ -17,3 +17,11 @@ variable "public_sb2_cidr" {
 variable "private_sb2_cidr" {
     default = "10.0.3.0/24"
 }
+
+variable "ami_id" {
+    default = "ami-07d9b9ddc6cd8dd30"
+}
+
+variable "instance_type" {
+    default = "t2.micro"
+}
