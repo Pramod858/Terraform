@@ -29,6 +29,7 @@ resource "aws_instance" "web" {
     security_groups = [aws_security_group.TF_SG.name]
     # key_name      = aws_key_pair.TF_key.key_name  # Reference the key_name from aws_key_pair resource
     key_name = aws_key_pair.TF_key.key_name
+    user_data = filebase64("./example.sh")
 }
 
 resource "aws_security_group" "TF_SG" {
@@ -43,4 +44,20 @@ resource "aws_security_group" "TF_SG" {
         cidr_blocks = ["0.0.0.0/0"]
         description = "allow SSH"
         }
+
+    ingress {
+        from_port   = 80
+        to_port     = 80
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+        description = "allow HTTP"
+        }
+    
+    egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+    }
 }
